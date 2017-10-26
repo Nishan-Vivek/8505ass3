@@ -14,8 +14,10 @@ args = parser.parse_args()
 
 
 def stp_filter(packet):
-        print('in filter')
+        # print('in filter')
+        print("####################RESPONSE_START###################\n")
         print packet['Raw'].load
+        print("####################RESPONSE_END#####################\n")
         return True
 
 
