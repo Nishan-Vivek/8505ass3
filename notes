@@ -24,3 +24,10 @@ Server
         - destination port (ie client_port)
         - Its IP (not really??)
         - Its source port (ie server_port... used to trigger sniffing)
+
+
+
+dependences
+pycrypto (2.6.1)
+scapy (2.3.3)
+setproctitle (1.1.10)
