@@ -1,7 +1,7 @@
 from Crypto.Cipher import AES
 
-KEY = 'PUT SHARED KEY HERE'
-IV = 'PUT IV HERE'
+KEY = 'PUT SHARED KEY HERE 1234'
+IV = 'PUT IV HERE 1234'
 
 def encrypt(payload):
     crypt = AES.new(KEY, AES.MODE_CFB, IV)
