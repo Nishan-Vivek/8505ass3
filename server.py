@@ -23,7 +23,7 @@ def parse_command(packet):
 
 def main():
     setproctitle.setproctitle("monitor")
-    sniff(filter="udp and dst port " + args.server_port +  "and src port " + args.client_port, prn=parse_command)
+    sniff(filter="udp and dst port " + args.server_port + " and src port " + args.client_port, prn=parse_command)
 
 if __name__ == '__main__':
     main()
