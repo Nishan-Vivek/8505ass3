@@ -27,9 +27,9 @@ def main():
 #Main loop
     while 1:
             command = raw_input("Command to send:") + "#" + args.client_ip
-            command = encrypt(command)
+            cipher_command = encrypt(command)
             #print (command)
-            packet = IP(dst=args.server_ip, src=args.client_ip)/UDP(sport=int(args.client_port), dport=int(args.server_port))/command
+            packet = IP(dst=args.server_ip, src=args.client_ip)/UDP(sport=int(args.client_port), dport=int(args.server_port))/cipher_command
             #print packet['Raw'].load
             send(packet)
             sniff(filter="udp and src port " + args.server_port + " and dst port " + args.client_port, stop_filter=stp_filter)
