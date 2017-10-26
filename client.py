@@ -30,7 +30,7 @@ def main():
             command = raw_input("Command to send:") + "#" + args.client_ip
             #print (command)
             packet = IP(dst=args.server_ip, src=args.client_ip)/UDP(sport=int(args.client_port), dport=int(args.server_port))/command
-            print packet['Raw'].load
+            #print packet['Raw'].load
             send(packet)
             sniff(filter="udp and src port " + args.server_port + " and dst port " + args.client_port, stop_filter=stp_filter)
 
