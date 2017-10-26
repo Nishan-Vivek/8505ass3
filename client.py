@@ -24,8 +24,10 @@ def main():
 
 #Main command and display loop
     while 1:
-            command = raw_input("Command to send:") + "#" + args.source
-            packet = IP(dst=args.dest, src=args.source)/UDP(sport=8081, dport=int(args.port))/command
+            command = raw_input("Command to send:") + "#" + args.source_ip
+            packet = IP(dst=args.dest, src=args.source_ip)/UDP(sport=int(args.source_port), dport=int(args.port))/command
             send(packet)
             sniff(filter="udp and src port " + args.port + " and dst port 8081", stop_filter=stp_filter)
 
+if __name__ == '__main__':
+	main()
