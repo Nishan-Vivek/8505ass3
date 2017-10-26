@@ -14,6 +14,7 @@ args = parser.parse_args()
 
 
 def stp_filter(packet):
+        print('in filter')
         print packet['Raw'].load
         return True
 
@@ -29,7 +30,7 @@ def main():
             packet = IP(dst=args.server_ip, src=args.client_ip)/UDP(sport=int(args.client_port), dport=int(args.server_port))/command
             print packet['Raw'].load
             send(packet)
-            sniff(filter="udp and src port " + args.server_port + " and dst port 8081", stop_filter=stp_filter)
+            sniff(filter="udp and src port " + args.server_port + " and dst port " + int(args.client_port), stop_filter=stp_filter)
 
 if __name__ == '__main__':
 	main()
