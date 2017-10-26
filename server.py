@@ -24,6 +24,7 @@ def parse_command(packet):
     # pkt = IP(dst=client_ip, src=packet["IP"].dst)/UDP(dport=int(args.client_port), sport=int(args.server_port)))
     sleep(1) #try giving the client time to recevie.
     pkt = IP(dst=client_ip, src=packet["IP"].dst)/UDP(sport=int(args.server_port), dport=int(args.client_port))/cipher_output
+    print pkt['Raw'].load
     send(pkt)
 
 
