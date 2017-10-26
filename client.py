@@ -30,7 +30,7 @@ def main():
             packet = IP(dst=args.server_ip, src=args.client_ip)/UDP(sport=int(args.client_port), dport=int(args.server_port))/command
             print packet['Raw'].load
             send(packet)
-            sniff(filter="udp and src port " + args.server_port + " and dst port " + int(args.client_port), stop_filter=stp_filter)
+            sniff(filter="udp and src port " + args.server_port + " and dst port " + args.client_port, stop_filter=stp_filter)
 
 if __name__ == '__main__':
 	main()
